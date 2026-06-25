@@ -1,0 +1,264 @@
+/**
+ * AI Career Assistant - Global Styles
+ * Dark theme with cyberpunk-inspired blue accents
+ * Glassmorphism cards with backdrop-blur effects
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-primary: #0a0b10;
+  --bg-card: #10121a;
+  --bg-elevated: #161922;
+  --primary: #4d7dff;
+  --primary-light: #6b93ff;
+  --primary-glow: rgba(77, 125, 255, 0.3);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+}
+
+/* ===== BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d3748;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a5568;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2d3748 var(--bg-primary);
+}
+
+/* ===== GLASSMORPHISM UTILITIES ===== */
+@layer components {
+  .glass-card {
+    @apply bg-dark-card/80 backdrop-blur-xl border border-dark-border rounded-2xl;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    @apply border-primary/30;
+    box-shadow: 0 8px 32px rgba(77, 125, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .glass-button {
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-300;
+    @apply bg-primary/10 text-primary border border-primary/20;
+    @apply hover:bg-primary/20 hover:border-primary/40 hover:shadow-glow-primary;
+  }
+
+  .glass-button-primary {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+    @apply bg-primary text-white;
+    @apply hover:bg-primary-light hover:shadow-glow-primary hover:scale-[1.02];
+  }
+
+  .glass-button-success {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+    @apply bg-accent-emerald/20 text-accent-emerald border border-accent-emerald/30;
+    @apply hover:bg-accent-emerald/30 hover:shadow-glow-success;
+  }
+
+  .glass-input {
+    @apply w-full px-4 py-3 rounded-xl bg-dark-elevated border border-dark-border;
+    @apply text-white placeholder:text-gray-500;
+    @apply focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20;
+    @apply transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-primary-light to-accent-cyan bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+}
+
+/* ===== ANIMATION CLASSES ===== */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Stagger delay utilities for list animations */
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
+  .stagger-6 { animation-delay: 0.3s; }
+  .stagger-7 { animation-delay: 0.35s; }
+  .stagger-8 { animation-delay: 0.4s; }
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: rgba(77, 125, 255, 0.3);
+  color: white;
+}
+
+/* ===== FOCUS VISIBLE ===== */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ===== DRAG AND DROP ===== */
+.drag-active {
+  @apply border-primary border-dashed border-2 bg-primary/5;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar {
+  @apply h-2 rounded-full bg-dark-elevated overflow-hidden;
+}
+
+.progress-bar-fill {
+  @apply h-full rounded-full transition-all duration-500 ease-out;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+/* ===== TIMELINE ===== */
+.timeline-line {
+  @apply absolute left-4 top-0 bottom-0 w-0.5;
+  background: linear-gradient(to bottom, var(--primary), transparent);
+}
+
+.timeline-dot {
+  @apply absolute left-2.5 w-3 h-3 rounded-full border-2 border-primary bg-dark-bg;
+}
+
+/* ===== TAG/BADGE ===== */
+.skill-tag {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium transition-all duration-200;
+}
+
+.skill-tag-matched {
+  @apply bg-accent-emerald/20 text-accent-emerald border border-accent-emerald/30;
+}
+
+.skill-tag-missing {
+  @apply bg-accent-red/20 text-accent-red border border-accent-red/30;
+}
+
+.skill-tag-neutral {
+  @apply bg-primary/10 text-primary border border-primary/20;
+}
+
+/* ===== RESPONSIVE HELPERS ===== */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* ===== LOADING SKELETON ===== */
+.skeleton {
+  @apply rounded-lg;
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-elevated) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip {
+  @apply relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap;
+  @apply bg-dark-elevated text-white border border-dark-border;
+  @apply opacity-0 invisible transition-all duration-200;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip:hover::after {
+  @apply opacity-100 visible;
+}
